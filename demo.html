@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom's Profile - Tom.css Demo</title>
+  <style>
+    /* Tom.css Framework */
+    :root {
+      --tom-blue: #0066cc;
+      --tom-link: #0066cc;
+      --tom-orange: #ff6600;
+      --tom-border: #b2c5d9;
+      --tom-header-bg: #6699cc;
+      --tom-table-header: #547dae;
+      --tom-bg: #e5ecf3;
+      --tom-module-bg: #c5d6e9;
+      --tom-white: #ffffff;
+      --tom-text: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--tom-text);
+      background-color: var(--tom-bg);
+    }
+
+    .tom-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    .tom-row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+
+    .tom-col-3 { grid-column: span 3; }
+    .tom-col-9 { grid-column: span 9; }
+    .tom-col-12 { grid-column: span 12; }
+
+    @media (max-width: 768px) {
+      .tom-col-md-12 { grid-column: span 12; }
+    }
+
+    .tom-module {
+      background: var(--tom-white);
+      border: 1px solid var(--tom-border);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .tom-module-header {
+      background: linear-gradient(to bottom, var(--tom-header-bg) 0%, var(--tom-table-header) 100%);
+      padding: 6px 10px;
+      color: var(--tom-white);
+      font-weight: bold;
+      font-size: 12px;
+      border-bottom: 1px solid #3366aa;
+    }
+
+    .tom-module-body {
+      padding: 12px;
+      background: var(--tom-white);
+    }
+
+    .tom-navbar {
+      background: linear-gradient(to bottom, #6699cc 0%, #547dae 100%);
+      border: 1px solid #3366aa;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--tom-white);
+    }
+
+    .tom-navbar-brand {
+      font-weight: bold;
+      color: var(--tom-white);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .tom-navbar-nav {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tom-nav-link {
+      color: var(--tom-white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    .tom-nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .tom-btn {
+      background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+      border: 1px solid #999;
+      padding: 4px 12px;
+      font-size: 11px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--tom-text);
+      display: inline-block;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    .tom-btn:hover {
+      background: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 100%);
+    }
+
+    .tom-btn-primary {
+      background: linear-gradient(to bottom, var(--tom-blue) 0%, #0052a3 100%);
+      border-color: #003d7a;
+      color: var(--tom-white);
+    }
+
+    .tom-btn-primary:hover {
+      background: linear-gradient(to bottom, #0052a3 0%, #003d7a 100%);
+      color: var(--tom-white);
+    }
+
+    .tom-profile-pic {
+      text-align: center;
+    }
+
+    .tom-profile-pic img {
+      max-width: 100%;
+      height: auto;
+      border: 3px solid var(--tom-white);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tom-profile-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: var(--tom-blue);
+    }
+
+    .tom-table {
+      width: 100%;
+      font-size: 11px;
+      border-collapse: collapse;
+    }
+
+    .tom-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .tom-contact-table td:first-child {
+      font-weight: bold;
+      width: 80px;
+      color: var(--tom-orange);
+    }
+
+    .tom-details-grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 6px 10px;
+      font-size: 11px;
+    }
+
+    .tom-label {
+      font-weight: bold;
+      color: var(--tom-orange);
+    }
+
+    .tom-friends-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .tom-friend-item {
+      text-align: center;
+    }
+
+    .tom-friend-item img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 2px solid var(--tom-border);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tom-friend-name {
+      font-size: 10px;
+      color: var(--tom-blue);
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tom-friend-name:hover {
+      text-decoration: underline;
+    }
+
+    .tom-comment {
+      background: #f7f9fb;
+      border: 1px solid var(--tom-border);
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .tom-comment-header {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .tom-comment-avatar {
+      width: 60px;
+      height: 60px;
+    }
+
+    .tom-comment-avatar img {
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--tom-border);
+      object-fit: cover;
+    }
+
+    .tom-comment-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tom-comment-author {
+      font-weight: bold;
+      color: var(--tom-blue);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .tom-comment-date {
+      font-size: 10px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .tom-comment-body {
+      padding-left: 70px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .tom-online {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #00ff00;
+      border-radius: 50%;
+      margin-right: 5px;
+      box-shadow: 0 0 4px #00ff00;
+    }
+
+    .tom-url {
+      background: #f0f0f0;
+      padding: 6px;
+      border: 1px solid #ccc;
+      font-size: 11px;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .tom-music-player {
+      background: #1a1a1a;
+      color: var(--tom-white);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .tom-text-center { text-align: center; }
+    .tom-text-right { text-align: right; }
+    .tom-text-muted { color: #666; }
+    .tom-fw-bold { font-weight: bold; }
+    .tom-mt-1 { margin-top: 5px; }
+    .tom-mt-2 { margin-top: 10px; }
+    .tom-mb-2 { margin-bottom: 10px; }
+    .tom-mb-3 { margin-bottom: 15px; }
+    .tom-fs-small { font-size: 10px; }
+
+    a {
+      color: var(--tom-link);
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: var(--tom-orange);
+    }
+
+    @media (max-width: 768px) {
+      .tom-friends-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="tom-container">
+    <div class="tom-navbar">
+      <a href="#" class="tom-navbar-brand">MySpace.com | Hello, Tom</a>
+      <ul class="tom-navbar-nav">
+        <li><a href="#" class="tom-nav-link">Home</a></li>
+        <li><a href="#" class="tom-nav-link">Browse</a></li>
+        <li><a href="#" class="tom-nav-link">Search</a></li>
+        <li><a href="#" class="tom-nav-link">Invite</a></li>
+        <li><a href="#" class="tom-nav-link">Mail</a></li>
+        <li><a href="#" class="tom-nav-link">Blog</a></li>
+        <li><a href="#" class="tom-nav-link">Forum</a></li>
+        <li><a href="#" class="tom-nav-link">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Grid Layout -->
+    <div class="tom-row">
+      
+      <!-- Left Sidebar - 3 columns -->
+      <div class="tom-col-3 tom-col-md-12">
+        
+        <!-- Profile Picture Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom</div>
+          <div class="tom-module-body tom-profile-pic">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Tom_Anderson_Myspace.jpg/440px-Tom_Anderson_Myspace.jpg" alt="Tom Anderson">
+            <div class="tom-profile-name">
+              <span class="tom-online"></span>Tom
+            </div>
+            <div class="tom-mt-2 tom-fs-small tom-text-muted">
+              "Thanks for the add!"
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Contacting Tom</div>
+          <div class="tom-module-body">
+            <table class="tom-table tom-contact-table">
+              <tr>
+                <td>Send Message</td>
+                <td><a href="#">Send Message</a></td>
+              </tr>
+              <tr>
+                <td>Forward to Friend</td>
+                <td><a href="#">Forward</a></td>
+              </tr>
+              <tr>
+                <td>Add to Friends</td>
+                <td><a href="#">Add to Friends</a></td>
+              </tr>
+              <tr>
+                <td>Add to Favorites</td>
+                <td><a href="#">Add to Favorites</a></td>
+              </tr>
+              <tr>
+                <td>Instant Message</td>
+                <td><a href="#">IM Tom</a></td>
+              </tr>
+              <tr>
+                <td>Block User</td>
+                <td><a href="#">Block User</a></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Interests Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's Interests</div>
+          <div class="tom-module-body">
+            <div class="tom-mb-2">
+              <span class="tom-label">General:</span>
+              <div class="tom-mt-1">Surfing, Technology, Music, Meeting new people</div>
+            </div>
+            <div class="tom-mb-2">
+              <span class="tom-label">Music:</span>
+              <div class="tom-mt-1">Alternative, Rock, Electronic</div>
+            </div>
+            <div>
+              <span class="tom-label">Movies:</span>
+              <div class="tom-mt-1">The Matrix, Fight Club, Old School</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- URL Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's URL</div>
+          <div class="tom-module-body">
+            <div class="tom-url">myspace.com/tom</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Content Area - 9 columns -->
+      <div class="tom-col-9 tom-col-md-12">
+        
+        <!-- Details Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's Details</div>
+          <div class="tom-module-body">
+            <div class="tom-details-grid">
+              <div class="tom-label">Status:</div>
+              <div>Single</div>
+              
+              <div class="tom-label">Here For:</div>
+              <div>Networking, Friends</div>
+              
+              <div class="tom-label">Hometown:</div>
+              <div>Los Angeles, CA</div>
+              
+              <div class="tom-label">Zodiac Sign:</div>
+              <div>Scorpio</div>
+              
+              <div class="tom-label">Occupation:</div>
+              <div>President of MySpace</div>
+              
+              <div class="tom-label">Member Since:</div>
+              <div>January 1, 2003</div>
+              
+              <div class="tom-label">Last Login:</div>
+              <div>1/12/2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Me Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's Blurbs</div>
+          <div class="tom-module-body">
+            <div class="tom-mb-3">
+              <span class="tom-label">About me:</span>
+              <div class="tom-mt-1">
+                Hey! I'm Tom, and I'm the first person you met on MySpace. Thanks for being here and being part of this community. I love connecting people and watching friendships grow. When I'm not working on MySpace, you can find me surfing in Malibu or checking out new bands in Hollywood. Feel free to drop me a comment or send a message anytime!
+              </div>
+            </div>
+            <div>
+              <span class="tom-label">Who I'd like to meet:</span>
+              <div class="tom-mt-1">
+                Everyone! That's the whole point of MySpace. Whether you're into music, art, technology, or just looking to make friends, this is the place. I want to meet creative people, entrepreneurs, musicians, artists, and anyone who wants to be part of our growing community.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Music Player Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's Profile Song</div>
+          <div class="tom-music-player">
+            <div class="tom-fw-bold tom-mb-2">♪ Now Playing: "In Da Club" by 50 Cent ♪</div>
+            <div class="tom-fs-small tom-text-muted">
+              [Music player would go here]
+            </div>
+          </div>
+        </div>
+
+        <!-- Friends Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom has 40 million friends</div>
+          <div class="tom-module-body">
+            <div class="tom-text-right tom-mb-2">
+              <a href="#" class="tom-fs-small">View All of Tom's Friends</a>
+            </div>
+            <div class="tom-friends-grid-4">
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/6699cc/ffffff?text=Chris" alt="Chris">
+                <a href="#" class="tom-friend-name">Chris</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/ff6600/ffffff?text=Sarah" alt="Sarah">
+                <a href="#" class="tom-friend-name">Sarah</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/6699cc/ffffff?text=Mike" alt="Mike">
+                <a href="#" class="tom-friend-name">Mike</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/ff6600/ffffff?text=Jessica" alt="Jessica">
+                <a href="#" class="tom-friend-name">Jessica</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/6699cc/ffffff?text=Dave" alt="Dave">
+                <a href="#" class="tom-friend-name">Dave</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/ff6600/ffffff?text=Amanda" alt="Amanda">
+                <a href="#" class="tom-friend-name">Amanda</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/6699cc/ffffff?text=Ryan" alt="Ryan">
+                <a href="#" class="tom-friend-name">Ryan</a>
+              </div>
+              <div class="tom-friend-item">
+                <img src="https://via.placeholder.com/100/ff6600/ffffff?text=Emily" alt="Emily">
+                <a href="#" class="tom-friend-name">Emily</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments Module -->
+        <div class="tom-module">
+          <div class="tom-module-header">Tom's Friend Space (Showing 3 of 12,487 comments)</div>
+          <div class="tom-module-body">
+            <div class="tom-mb-3">
+              <a href="#" class="tom-btn tom-btn-primary">Add Comment</a>
+            </div>
+
+            <div class="tom-comment">
+              <div class="tom-comment-header">
+                <div class="tom-comment-avatar">
+                  <img src="https://via.placeholder.com/60/6699cc/ffffff?text=SK" alt="Sarah">
+                </div>
+                <div class="tom-comment-meta">
+                  <a href="#" class="tom-comment-author">Sarah K.</a>
+                  <div class="tom-comment-date">Posted on Jan 11, 2026 at 3:45 PM</div>
+                </div>
+              </div>
+              <div class="tom-comment-body">
+                Thanks for the add Tom! Your profile looks awesome. Check out my band's new song when you get a chance! 🎸
+              </div>
+            </div>
+
+            <div class="tom-comment">
+              <div class="tom-comment-header">
+                <div class="tom-comment-avatar">
+                  <img src="https://via.placeholder.com/60/ff6600/ffffff?text=MC" alt="Mike">
+                </div>
+                <div class="tom-comment-meta">
+                  <a href="#" class="tom-comment-author">Mike C.</a>
+                  <div class="tom-comment-date">Posted on Jan 10, 2026 at 11:22 AM</div>
+                </div>
+              </div>
+              <div class="tom-comment-body">
+                Dude! Great seeing you at the party last weekend. We should totally hang out again soon. Hit me up!
+              </div>
+            </div>
+
+            <div class="tom-comment">
+              <div class="tom-comment-header">
+                <div class="tom-comment-avatar">
+                  <img src="https://via.placeholder.com/60/6699cc/ffffff?text=JR" alt="Jessica">
+                </div>
+                <div class="tom-comment-meta">
+                  <a href="#" class="tom-comment-author">Jessica R.</a>
+                  <div class="tom-comment-date">Posted on Jan 9, 2026 at 8:15 PM</div>
+                </div>
+              </div>
+              <div class="tom-comment-body">
+                OMG Tom! Your profile song is fire! 🔥 Love what you're doing with MySpace. Keep up the awesome work!
+              </div>
+            </div>
+
+            <div class="tom-mt-2 tom-text-center">
+              <a href="#" class="tom-btn">View All Comments</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="tom-text-center tom-mt-2 tom-text-muted" style="padding: 20px 0; border-top: 1px solid var(--tom-border);">
+      <span class="tom-fs-small">© 2003-2026 MySpace.com. Built with Tom.css ❤️</span>
+    </div>
+  </div>
+</body>
+</html>
